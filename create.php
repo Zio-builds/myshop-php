@@ -130,7 +130,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a href="" class="btn btn-outline-primary" href="/php-crud/index.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="index.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>
