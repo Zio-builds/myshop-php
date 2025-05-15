@@ -7,6 +7,8 @@ $address = "";
 $errorMessage = "";
 $successMessage = "";
 
+$db = new SQLite3('user_info.db');
+
 if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -20,12 +22,32 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // add new client to database
+        $sql = 'INSERT INTO clients(name, email, phone, address)
+                VALUES(:name, :email, :phone, :address)';
+
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':name', $name, SQLITE3_TEXT);
+        $stmt->bindValue(':email', $email, SQLITE3_TEXT);
+        $stmt->bindValue(':phone', $phone, SQLITE3_TEXT);
+        $stmt->bindValue(':address', $address, SQLITE3_TEXT);
+        
+        $result = $stmt->execute();
+
+        if (!$result) {
+            $errorMessage = "Invalid query: " . $connection->error;
+            break;
+        }
+
         $name = "";
         $email = "";
         $phone = "";
         $address = "";
 
         $successMessage = "Client added correctly";
+
+        header("location: index.php");
+        exit;
 
     }   while (false);
 }

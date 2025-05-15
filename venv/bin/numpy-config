@@ -1,4 +1,4 @@
-#!/home/zio/learning/php-crud/venv/bin/python
+#!/home/zio/learning/myshop/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
